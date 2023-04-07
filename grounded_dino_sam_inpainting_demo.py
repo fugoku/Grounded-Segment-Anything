@@ -168,8 +168,6 @@ if __name__ == "__main__":
     parser.add_argument("--device", type=str, default="cpu", help="running on cpu only!, default=False")
     args = parser.parse_args()
 
-    assert args.text_prompt, 'text_prompt is not found!'
-
     # cfg
     config_file = args.config  # change the path of the model config file
     grounded_checkpoint = args.grounded_checkpoint  # change the path of the model
@@ -182,6 +180,8 @@ if __name__ == "__main__":
     box_threshold = args.box_threshold
     text_threshold = args.box_threshold
     device = args.device
+
+    assert text_prompt, 'text_prompt is not found!'
 
     # make dir
     os.makedirs(output_dir, exist_ok=True)
@@ -274,5 +274,5 @@ if __name__ == "__main__":
         # plt.axis('off')
         # plt.savefig(os.path.join(output_dir, "grounded_sam_output.jpg"), bbox_inches="tight")
     else:
-        print("task_type:{} error!".format(args.task_type))
+        print("task_type:{} error!".format(task_type))
 
